@@ -1,0 +1,11 @@
+#!/bin/bash
+# squeue for userid and line number (depth)
+#
+# Test for no command line input
+if [ $# -eq 0 ]
+  then
+    echo "usage: qdepth [userid] [partition]"
+    exit 1
+fi
+
+squeue --states=pd --partition=$2 -o "%.18i %.8u %.9P %.9q %.8j %.14a %.10Q %.6D %.5C %R %.10V" |grep -n "NODELIST\|$1"

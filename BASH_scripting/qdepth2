@@ -1,0 +1,20 @@
+#!/bin/bash
+# squeue for userid and line number (depth)
+# Version 2 with QoS and test for Slurm
+#
+# Test for no command line input
+if [ $# -eq 0 ]
+  then
+    echo "usage: qdepth [userid] [partition] [QOS]"
+    exit 1
+fi
+
+# Test for no Slurm 
+if [[ $(which squeue 2>&1 |grep "no squeue") ]];
+  then
+    echo "Slum is required to use this tool."
+    exit 1
+fi
+
+
+squeue --states=pd --partition=$2 --qos=$3 -o "%.18i %.8u %.9P %.9q %.8j %.14a %.10Q %.6D %.5C %R %.10V" |grep -B5 -n "NODELIST\|$1"
