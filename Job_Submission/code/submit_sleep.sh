@@ -5,9 +5,7 @@
 #SBATCH --qos=testing              		# Specify QOS
 #SBATCH --partition=shas-testing		# Specify Summit Haswell testing nodes
 #SBATCH --output=sleep_%j.out			# Rename standard output file
-#SBATCH --job-name=sleep			# Job submission name
-#SBATCH --mail-type=end				# Email you when the job ends 
-#SBATCH --mail-user=<user>@colorado.edu		# Email address to send to	
+#SBATCH --job-name=sleep			# Job submission name	
 #SBATCH --reservation=job_submission_2019 	# Reservation (only valid during workshop)
 
 
