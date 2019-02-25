@@ -1,0 +1,28 @@
+# This file contains the commands you would need to download and
+# Install samtools, an open source set of tools for manipulating
+# large nucleotide sequence alignments in SAM format
+
+#Download the source code
+wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+
+#Untar/untip the source code directory
+tar -xvjf samtools-1.9.tar.bz2
+
+#Go into the source code directory
+cd samtools-1.9
+
+#Look around:
+ls -l
+vi Makefile
+
+#Load the Intel compiler and run ./configure
+ml intel
+./configure --prefix=/projects/$USER/samtools CFLAGS='-g -O2 -xCORE-AVX2'
+
+#examine what was created by running ./configure
+ls -ltr
+vi configure.mk
+
+#Now make and install the code using 4 processors (-j 4)
+make -j 4
+make install
